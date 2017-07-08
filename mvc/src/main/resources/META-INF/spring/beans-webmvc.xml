@@ -17,7 +17,7 @@
   <mvc:annotation-driven
     validator="globalValidator" enable-matrix-variables="true"/>
 
-  <!-- Static Resourceの設定 -->
+  <!-- Static Resource 설정 -->
   <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
   <mvc:view-resolvers>
