@@ -17,51 +17,48 @@ import sample.aop.business.domain.Product;
 @Component
 public class MyFirstAspect {
 
-	// 注意：説明の都合上、DAOのメソッド名を"2.1 SpringのDI"のサンプルとは変えています。
-	// findByProductName ---> findProduct
-	
 	@Before("execution(* findProduct(String))")
 	public void before(JoinPoint jp) {
-		// メソッド開始時にWeavingするAdvice
-		System.out.println("Hello Before! *** メソッドが呼ばれる前に出てくるよ!");
+		// 메서드 시작 시에 동작하는 어드바이스
+		System.out.println("Hello Before! *** 메서드가 호출되기 전에 나옵니다!");
 		Signature sig = jp.getSignature();
-		System.out.println("-----> メソッド名を取得するよ：" + sig.getName());
+		System.out.println("-----> 메서드명：" + sig.getName());
 		Object[] o = jp.getArgs();
-		System.out.println("-----> 仮引数の値を取得するよ：" + o[0]);
+		System.out.println("-----> 인수：" + o[0]);
 	}
 
 	@After("execution(* findProduct(String))")
 	public void after() {
-		// メソッド終了後にWeavingするAdvice
-		System.out.println("Hello After! *** メソッドが呼ばれた後に出てくるよ!");
+		// 메서드 종료 후에 동작하는 어드바이스
+		System.out.println("Hello After! *** 메서드가 호출된 후에 나옵니다!");
 	}
 
 	@AfterReturning(value = "execution(* findProduct(String))", returning = "product")
 	public void afterReturning(JoinPoint jp, Product product) {
-		// メソッド呼出が例外の送出なしに終了した際に呼ばれるAdvice
-		System.out.println("Hello AfterReturning! *** メソッドを呼んだ後に出てくるよ");
+		// 메서드 호출이 예외를 내보내지 않고 종료했을 때 동작하는 어드바이스
+		System.out.println("Hello AfterReturning! *** 메서드를 호출한 후에 나옵니다!");
 		Signature sig = jp.getSignature();
-		System.out.println("-----> メソッド名を取得するよ：" + sig.getName());
+		System.out.println("-----> 메서드명：" + sig.getName());
 		Object[] o = jp.getArgs();
-		System.out.println("-----> 仮引数の値を取得するよ：" + o[0]);
+		System.out.println("-----> 인수：" + o[0]);
 	}
 
 	@Around("execution(* findProduct(String))")
 	public Product around(ProceedingJoinPoint pjp) throws Throwable {
-		// メソッド呼出の前後にWeavingするAdvice
-		System.out.println("Hello Around! before *** メソッドを呼ぶ前に出てくるよ!");
+		// 메서드 호출 전후에 동작하는 어드바이스
+		System.out.println("Hello Around! before *** 메서드를 호출하기 전에 나옵니다!");
 
 		Signature sig = pjp.getSignature();
-		System.out.println("-----> aop:around メソッド名を取得するよ：" + sig.getName());
+		System.out.println("-----> aop:around 메서드명：" + sig.getName());
 		Product p = (Product) pjp.proceed();
-		System.out.println("Hello Around! after *** メソッドを呼んだ後に出てくるよ!");
+		System.out.println("Hello Around! after *** 메서드를 호출한 후에 나옵니다!");
 		return p;
 	}
 
 	@AfterThrowing(value = "execution(* findByProductName(String))", throwing = "ex")
 	public void afterThrowing(Throwable ex) {
-		// メソッド呼出が例外を送出した際に呼ばれるAdvice
-		System.out.println("Hello Throwing! *** 例外になったら出てくるよ");
+		// 메서드 호출이 예외를 던졌을 때 동작하는 어드바이스
+		System.out.println("Hello Throwing! *** 예외가 생기면 나옵니다!");
 		System.out.println("exception value = " + ex.toString());
 	}
 }

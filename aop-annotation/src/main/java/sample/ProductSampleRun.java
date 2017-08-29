@@ -15,14 +15,13 @@ public class ProductSampleRun {
 
 	@SuppressWarnings("resource")
 	public void execute() {
+		// BeanFactory는 ApplicationContext에 적어도 괜찮습니다.
 		BeanFactory ctx = new ClassPathXmlApplicationContext("/sample/config/applicationContext.xml");
 		ProductService productService = ctx.getBean(ProductService.class);
 
-		productService.addProduct(new Product("ホチキス", 100));
+		productService.addProduct(new Product("공책", 100));
 
-		// 注意：説明の都合上、DAOのメソッド名を"2.1 SpringのDI"のサンプルとは変えています。
-		// findByProductName ---> findProduct
-		Product product = productService.findByProductName("ホチキス");
+		Product product = productService.findByProductName("공책");
 		System.out.println(product);
 	}
 }
