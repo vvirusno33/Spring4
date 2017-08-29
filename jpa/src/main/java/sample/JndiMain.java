@@ -28,21 +28,20 @@ public class JndiMain {
     	
     	EntityManagerFactory emf = createEntityManagerFactory();
         
-        // Spring이 제공하는 JNDI구현(테스트용)을 사용해서 네이밍 컨텍키스트를 생성
-        SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
+        // Spring이 제공하는 JNDI구현(테스트용)을 사용해서 네이밍 컨텍스트를 생성
+    	SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
         builder.bind("persistence/MyEntityManagerFactory", emf);
         builder.activate();
     	
-    	//Spring 컨테이너 생성        
-    	//JavaConfig로 Bean을정의 한경우
-//        ApplicationContext ctx = new AnnotationConfigApplicationContext(
-//                JpaJndiConfig.class);
+    	//Spring의 컨테이너를 생성        
+    	//JavaConfig로 Bean을 정의한 경우
+        //ApplicationContext ctx = new AnnotationConfigApplicationContext(JpaJndiConfig.class);
 
-    	//Spring 컨테이너 생성        
+    	//Spring의 컨테이너를 생성  
     	//XML로 Bean을 정의한 경우
         ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-jpa-jndi.xml");
         
-        //트랜잭션 개시
+        //트랜잭션 시작
         PlatformTransactionManager t = ctx.getBean(PlatformTransactionManager.class);
         TransactionStatus s = t.getTransaction(null);
         

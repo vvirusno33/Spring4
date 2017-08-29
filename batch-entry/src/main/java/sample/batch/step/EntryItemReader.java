@@ -8,7 +8,7 @@ import sample.batch.exception.BatchSkipException;
 @Component("itemReader")
 public class EntryItemReader implements ItemReader<String> {
 
-	private String[] input = {"Hello World", "hoge", "こんにちわ。世界", null};
+	private String[] input = {"Hello World", "hoge", "안녕하세요", null};
 
 	private int index = 0;
 
@@ -23,7 +23,7 @@ public class EntryItemReader implements ItemReader<String> {
 			return null;
 		}
 		if (message.equals("hoge")) {
-			throw new BatchSkipException("不正なデータです"
+			throw new BatchSkipException("부정한 데이터입니다."
 					+ message + "]");
 		}
 		return message;

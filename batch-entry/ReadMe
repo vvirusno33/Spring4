@@ -1,15 +1,15 @@
-***サンプルの実行方法***
-[HSQLDBの起動]
-1.HSQLDBが起動していない場合、HSQLDBをインメモリで起動する。
-1-1. HSQLDB(1.8.0)をダウンロードし、libフォルダで以下のコマンドをうって起動する(このサンプルではインメモリ)。
+***예제의 실행 방법***
+[HSQLDB의 실행]
+1.HSQLDB가 실행되어 있지 않다면 HSQLDB를 인메모리 모드로 실행한다.
+1-1. HSQLDB(1.8.0)를 다운로드하여 lib폴더에서 이하의 커맨드를 사용하여 실행한다.(이 예제에서는 인 메모리)
 ・java -cp hsqldb.jar org.hsqldb.util.DatabaseManager
 
-[Eclipseからの動作確認]
-1.batch-entryプロジェクトを選択し、右クリックでRun as > Run Configurations...を選択する。
-2.ダイアログが表示されるので、mainタブのプロジェクトに「batch-entry」を、mainクラスに「org.springframework.batch.core.launch.support.CommandLineJobRunner」を設定する。
-3.Argumentタブを選択し、Proguram argumentsに「classpath:/batch-context.xml job1」を設定する。
-4.Runボタンをクリックすると、バッチが実行される（Consoleビューで動作が確認可能）。
+[Eclipse에서의 실행 방법]
+1.batch-entry프로젝트를 선택한 다음, 우클릭으로 [Run as > Run Configurations...]를 선택
+2.다이어로그가 표시되면 main탭의 프로젝트에 [batch-entry]를, main클래스에는 [org.springframework.batch.core.launch.support.CommandLineJobRunner]를 설정
+3.Argument탭을 선택해 Program arguments에 [classpath:/batch-context.xml job1]를 설정
+4.Run버튼을 클릭하면 배치가 실행됩니다.(콘솔 뷰에서 실행을 확인 가능)
 
-[エラー処理の確認]
-EntryItemReaderクラスのinputを以下のように変更することで、エラーが確認できる。
+[에러 처리의 확인]
+EntryItemReader클래스의 input을 다음과 같이 변경해서 에러를 확인할 수 있음
 private String[] input = {"Hello World", "hoge", "hoge", null};

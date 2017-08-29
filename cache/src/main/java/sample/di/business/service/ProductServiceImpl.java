@@ -13,13 +13,13 @@ public class ProductServiceImpl implements ProductService {
 
 	public Product findProduct(String name) {
 
-		// 測定開始
+		// 측정 시작
 		StopWatch sw = new StopWatch();
 		sw.start();
 
 		Product product = productDao.findProduct(name);
 
-		// 測定終了
+		// 측정 종료
 		sw.stop();
 
 		System.out.format("Seconds=%1$s, value=%2$s%n",

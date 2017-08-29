@@ -13,17 +13,17 @@ import sample.di.business.service.ProductDao;
 @Repository
 public class ProductDaoImpl implements ProductDao {
 
-	// RDBの替り
+	// RDB의 대체
 	private Map<String, Product> storage = new HashMap<String, Product>();
 
-    // Daoだけど簡単にするためRDBにはアクセスしてません。
+    // Dao이지만 단순화 하기 위해 RDB에는 액세스 하지 않음
 	@Cacheable(value = "area")
     public Product findProduct(String name) {
-    	slowly(); // 故意に遅らせる
+    	slowly(); // 고의로 지연시킴
         return storage.get(name);
     }
 
-	//@CacheEvict(value = "product", allEntries = true) 全キャッシュエントリをクリア
+	//@CacheEvict(value = "product", allEntries = true) 모든 캐시 엔트리 삭제
 	@CacheEvict(value = "area", key = "#product.name")
 	public void addProduct(Product product) {
 		storage.put(product.getName(), product);

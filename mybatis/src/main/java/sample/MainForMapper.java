@@ -17,14 +17,13 @@ import sample.mybatis.business.service.PetDao;
 public class MainForMapper {
 
     public static void main(String[] args) {
-    	//Spring 컨테이너를 생성        
-    	//JavaConfig로 Bean을 정의하는 경우
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(
-                DataSourceConfig.class, MyBatisConfigForMapper.class);
+    	//Spring의 컨테이너를 생성        
+    	//JavaConfig로 Bean을 정의한 경우
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(DataSourceConfig.class, MyBatisConfigForMapper.class);
 
-    	//Spring 컨테이너 생성        
-    	//XML로 Bean을 정의하는 경우
-//        ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-mybatis-mapper.xml");
+    	//Spring의 컨테이너를 생성  
+    	//XML로 Bean을 정의한 경우
+        //ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-mybatis-mapper.xml");
         
         PetDao dao = ctx.getBean(PetDao.class);
         

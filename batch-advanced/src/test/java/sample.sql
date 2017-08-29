@@ -6,5 +6,5 @@ create table member (
 member_id int,
 name varchar(20));
 
-insert into member values(100, 'Suzuki Taro');
+insert into member values(100, 'ChulSoo Kim');
 insert into member values(112, 'Tiger Woods');

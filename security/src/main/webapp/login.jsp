@@ -8,30 +8,30 @@
 </head>
 <body>
 
-<h1>ログインページ</h1>
+<h1>로그인 페이지</h1>
 <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
-  ログインエラーです<br>
-  例外型：${SPRING_SECURITY_LAST_EXCEPTION.getClass().name}<br>
-  メッセージ：${SPRING_SECURITY_LAST_EXCEPTION.message}<br>
+  로그인 에러입니다.<br>
+  예외 타입：${SPRING_SECURITY_LAST_EXCEPTION.getClass().name}<br>
+  메시지：${SPRING_SECURITY_LAST_EXCEPTION.message}<br>
   <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
 </c:if>
 <form action="processLogin" method="post">
   <sec:csrfInput/>
   <dl>
     <dt>
-      ログインID
+      로그인 ID
     </dt>
     <dd>
       <input type="text" name="paramLoginId">
     </dd>
     <dt>
-      パスワード
+      패스워드
     </dt>
     <dd>
       <input type="password" name="paramPassword">
     </dd>
   </dl>
-  <button>ログイン</button>
+  <button>로그인</button>
 </form>
 </body>
 </html>

@@ -1,4 +1,4 @@
-***サンプルの実行方法***
-1.「src/main/java」フォルダ内の「sample」パッケージ内にある「ProductSampleRun.java」を選択。
-2.右クリックで「Run As > Java Application」で実行。
-3.結果はConsoleビューで確認。
+***예제의 실행 방법***
+1."src/main/java" 폴더의 "sample" 패키지 내에 있는 "ProductSampleRun.java"를 선택
+2.우클릭으로 "Run As > Java Application"를 선택하여 실행
+3.결과는 Console뷰에서 확인

@@ -9,23 +9,23 @@
 </head>
 <body>
 <sec:authorize access="isAnonymous()">
-未ログイン
+로그인
 </sec:authorize>
 <sec:authorize access="isAuthenticated()">
   <sec:authentication var="user" property="principal"/>
-  ログインユーザ：${user.username}
+  로그인 유저：${user.username}
 </sec:authorize>
-<h1>トップページ</h1>
-トップページです。
+<h1>톱페이지</h1>
+톱 페이지입니다.
 <ul>
-  <li><a href="user/user.jsp">一般ユーザ用ページへ</a></li>
+  <li><a href="user/user.jsp">일반 사용자용 페이지로</a></li>
   <sec:authorize access="hasRole('ADMIN')">
-    <li><a href="admin/admin.jsp">管理者専用ページへ</a></li>
+    <li><a href="admin/admin.jsp">관리자 전용 페이지로</a></li>
   </sec:authorize>
 </ul>
 <form action="logout" method="post">
   <sec:csrfInput />
-  <button>ログアウト</button>
+  <button>로그아웃</button>
 </form>
 </body>
 </html>

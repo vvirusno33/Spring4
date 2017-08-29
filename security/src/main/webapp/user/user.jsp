@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
 </head>
 <body>
-<h1>一般ユーザ用ページ</h1>
-一般ユーザ用ページです。<br>
+<h1>일반 사용자용 페이지</h1>
+일반 사용자용 페이지입니다.<br>
 <ul>
-  <li><a href="../top.jsp">トップページへ</a></li>
+  <li><a href="../top.jsp">톱 페이지로</a></li>
 </ul>
 </body>
 </html>

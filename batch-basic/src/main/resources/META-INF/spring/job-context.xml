@@ -11,7 +11,7 @@
 				<batch:chunk reader="productItemReader" processor="productItemProcessor" writer="productItemWriter"
 					commit-interval="1" skip-limit="10">
 					<batch:skippable-exception-classes>
-						<!-- ValidationエラーでSKIPさせる -->
+						<!-- Validation에러로 SKIP하게 함 -->
 						<batch:include class="org.springframework.batch.item.validator.ValidationException" />
 					</batch:skippable-exception-classes>
 				</batch:chunk>

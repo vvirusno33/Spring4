@@ -1,16 +1,16 @@
-***サンプルの実行方法***
-[HSQLDBの起動]
-1.HSQLDBを起動する。
-1-1. HSQLDB(1.8.0)をダウンロードする。
-1−2. %HSQLDB_HOME%¥libフォルダへ移動。以下のコマンドでHSQLDBをサーバーモードで起動する。
+***예제의 실행 방법***
+[HSQLDB의 실행]
+1.HSQLDB 실행하기.
+1-1. HSQLDB(1.8.0)를 다운로드 한다.
+1−2. %HSQLDB_HOME%¥lib폴더에 이동. 이하의 커맨드로 HSQLDB를 서버 모드로 실행한다.
 ・java -cp hsqldb.jar org.hsqldb.Server -database db/test
-1−2. 同様に、libフォルダで以下のコマンドでDatabaseManagerを起動する
+1−2. 동일하게 lib폴더에서 이하의 커맨드로 DatabaseManager를 실행한다.
 ・java -cp hsqldb.jar org.hsqldb.util.DatabaseManager
-・ダイアログが出てくるのでTypeに「HSQL Database Engine Server」を選択すればOK。
+・다이어로그가 표시되면 Type에서 "HSQL Database Engine Server"를 선택
 
-[Eclipseからの動作確認]
-1.batch-basicプロジェクトを選択し、右クリックでRun as > Run Configurations...を選択する。
-2.ダイアログが表示されるので、mainタブのプロジェクトに「batch-basic」を、mainクラスに「org.springframework.batch.core.launch.support.CommandLineJobRunner」を設定する。
-3.Argumentタブを選択し、Proguram argumentsに「classpath:/batch-context.xml job1 inputFile=classpath:/product_csv/1.csv」を設定する。
-4.Runボタンをクリックすると、バッチが実行される。
-5.DatabaseManagerでバッチが起動し、テーブルが変更されたことを確認する（必要があればDatabaseManagerでView>Reflesh Treeを行う）。
+[Eclipse에서의 실행 방법]
+1.batch-advanced프로젝트를 선택한 다음, 우클릭으로 [Run as > Run Configurations...]를 선택
+2.다이어로그가 표시되면 main탭의 프로젝트에 [batch-basic]를, main클래스에는 [org.springframework.batch.core.launch.support.CommandLineJobRunner]를 설정
+3.Argument탭을 선택해 Program arguments에 [classpath:/batch-context.xml job1 inputFile=classpath:/product_csv/1.csv]를 설정
+4.Run버튼을 클릭하면 배치가 실행됩니다.
+5.DatabaseManager에서 배치를 실행하여 테이블이 변경된 것을 확인한다.(필요하다면 DatabaseManager에서 View>Reflesh Tree를 실행)

@@ -18,16 +18,15 @@ import sample.hibernate.business.service.PetDao;
 public class Main {
 
     public static void main(String[] args) {
-    	//Spring 컨테이너를 생성        
-    	//JavaConfig으로Bean을 정의 하는 경우
-//        ApplicationContext ctx = new AnnotationConfigApplicationContext(
-//                DataSourceConfig.class, HibernateConfig.class);
+    	//Spring의 컨테이너를 생성        
+    	//JavaConfig로 Bean을 정의한 경우
+    	//ApplicationContext ctx = new AnnotationConfigApplicationContext(DataSourceConfig.class, HibernateConfig.class);
 
-    	//Spring  컨테이너를 생성 
-    	//XML로 Bean을 정의 하는 경우
+    	//Spring의 컨테이너를 생성  
+    	//XML로 Bean을 정의한 경우
         ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-hibernate.xml");
         
-        //트랜잭션 개시
+        //트랜잭션 시작
         PlatformTransactionManager t = ctx.getBean(PlatformTransactionManager.class);
         TransactionStatus s = t.getTransaction(null);
         

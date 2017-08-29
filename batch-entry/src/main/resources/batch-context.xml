@@ -12,7 +12,7 @@
 
 	<context:component-scan base-package="sample.batch" />
 	<import resource="classpath:/META-INF/spring/job-context.xml" />
-       <!-- batch-entryでは使わない
+       <!-- batch-entry에서는 사용하지 않음
        <import resource="classpath:/META-INF/spring/item-context.xml" />
        -->
 
