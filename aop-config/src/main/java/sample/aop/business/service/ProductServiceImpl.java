@@ -15,8 +15,6 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Product findByProductName(String name) {
-		// 注意：説明の都合上、DAOのメソッド名を"2.1 SpringのDI"のサンプルとは変えています。
-		// findByProductName ---> findProduct
 		return productDao.findProduct(name);
 	}
 }

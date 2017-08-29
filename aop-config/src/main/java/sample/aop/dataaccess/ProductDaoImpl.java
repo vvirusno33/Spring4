@@ -10,12 +10,10 @@ import sample.aop.business.service.ProductDao;
 
 @Component
 public class ProductDaoImpl implements ProductDao {
-	// Daoだけど簡単にするためRDBにはアクセスしてません。
-	// MapはRDBの替り
+	// Dao만으로 간단하게 구현하게 위해서 RDB에 접속은 하지 않습니다.
+	// Map은 RDB대신으로 사용
 	private Map<String, Product> storage = new HashMap<String, Product>();
 
-	// 注意：説明の都合上、DAOのメソッド名を"2.1 SpringのDI"のサンプルとは変えています。
-	// findByProductName ---> findProduct
 	public Product findProduct(String name) {
 		return storage.get(name);
 	}
