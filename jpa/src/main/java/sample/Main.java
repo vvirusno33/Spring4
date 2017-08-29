@@ -13,16 +13,16 @@ import sample.jpa.business.service.PetDao;
 public class Main {
 
     public static void main(String[] args) {
-    	//Springのコンテナを生成        
-    	//JavaConfigでBean定義した場合
+    	//Spring 컨테이너 생성        
+    	//JavaConfig로 Bean을 정의한 경우
         ApplicationContext ctx = new AnnotationConfigApplicationContext(
                 DataSourceConfig.class, JpaConfig.class);
 
-    	//Springのコンテナを生成        
-    	//XMLでBean定義した場合
+    	//Spring 컨테이너 생성        
+    	//XML로 Bean을 정의한 경우
         //ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-jpa.xml");
         
-        //トランザクションを開始
+        //트랜잭션 개시
         PlatformTransactionManager t = ctx.getBean(PlatformTransactionManager.class);
         TransactionStatus s = t.getTransaction(null);
         
@@ -30,7 +30,7 @@ public class Main {
         
         System.out.println(dao.findById(12).getPetName());
         
-        //トランザクションをコミット
+        //트랜잭션 커밋
         t.commit(s);
         
     }

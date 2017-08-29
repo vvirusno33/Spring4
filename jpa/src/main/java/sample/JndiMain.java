@@ -28,21 +28,21 @@ public class JndiMain {
     	
     	EntityManagerFactory emf = createEntityManagerFactory();
         
-        // Springが提供するJNDI実装(テスト用)を使用し、ネーミングコンテキストを生成
+        // Spring이 제공하는 JNDI구현(테스트용)을 사용해서 네이밍 컨텍키스트를 생성
         SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
         builder.bind("persistence/MyEntityManagerFactory", emf);
         builder.activate();
     	
-    	//Springのコンテナを生成        
-    	//JavaConfigでBean定義した場合
+    	//Spring 컨테이너 생성        
+    	//JavaConfig로 Bean을정의 한경우
 //        ApplicationContext ctx = new AnnotationConfigApplicationContext(
 //                JpaJndiConfig.class);
 
-    	//Springのコンテナを生成        
-    	//XMLでBean定義した場合
+    	//Spring 컨테이너 생성        
+    	//XML로 Bean을 정의한 경우
         ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-jpa-jndi.xml");
         
-        //トランザクションを開始
+        //트랜잭션 개시
         PlatformTransactionManager t = ctx.getBean(PlatformTransactionManager.class);
         TransactionStatus s = t.getTransaction(null);
         
@@ -50,7 +50,7 @@ public class JndiMain {
         
         System.out.println(dao.findById(12).getPetName());
         
-        //トランザクションをコミット
+        //트랜잭션 커밋
         t.commit(s);
         
     }
