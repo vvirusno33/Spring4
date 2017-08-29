@@ -23,7 +23,7 @@ public class EntryItemReader implements ItemReader<String> {
 			return null;
 		}
 		if (message.equals("hoge")) {
-			throw new BatchSkipException("부정한 데이터입니다."
+			throw new BatchSkipException("데이터 에러"
 					+ message + "]");
 		}
 		return message;
