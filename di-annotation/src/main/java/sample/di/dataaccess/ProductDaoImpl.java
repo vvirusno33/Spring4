@@ -10,8 +10,8 @@ import sample.di.business.service.ProductDao;
 
 @Component
 public class ProductDaoImpl implements ProductDao {
-    // Daoだけど簡単にするためRDBにはアクセスしてません。
-	// MapはRDBの替り
+	// Dao만으로 간단하게 구현하게 위해서 RDB에 접속은 하지 않습니다.
+	// Map은 RDB대신으로 사용
 	private Map<String, Product> storage = new HashMap<String, Product>();
 
     public Product findByProductName(String name) {

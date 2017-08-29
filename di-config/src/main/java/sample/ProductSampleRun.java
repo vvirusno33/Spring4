@@ -19,9 +19,9 @@ public class ProductSampleRun {
                 "/sample/config/applicationContext.xml");
         ProductService productService = ctx.getBean(ProductService.class);
 
-        productService.addProduct(new Product("ホチキス", 100));
+        productService.addProduct(new Product("공책", 100));
 
-        Product product = productService.findByProductName("ホチキス");
+        Product product = productService.findByProductName("공책");
         System.out.println(product);
     }
 }

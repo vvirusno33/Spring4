@@ -15,14 +15,14 @@ public class ProductSampleRun {
 
     @SuppressWarnings("resource")
 	public void execute() {
-    	// BeanFactoryはApplicationContextに書替えてもOK
+    	// BeanFactory는ApplicationContext에서 변경해도 괜찮습니다
         BeanFactory ctx = new ClassPathXmlApplicationContext(
                 "/sample/config/applicationContext.xml");
         ProductService productService = ctx.getBean(ProductService.class);
 
-        productService.addProduct(new Product("ホチキス", 100));
+        productService.addProduct(new Product("공책", 100));
 
-        Product product = productService.findByProductName("ホチキス");
+        Product product = productService.findByProductName("공책");
         System.out.println(product);
 
     }
