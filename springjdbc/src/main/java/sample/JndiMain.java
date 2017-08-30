@@ -19,7 +19,7 @@ import sample.config.TemplateConfig;
 public class JndiMain {
     
     public static void main(String[] args) throws Exception {
-    	// データソースのオブジェクトを生成
+    	// 데이터소스의 오브젝트를 생성
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("org.hsqldb.jdbc.JDBCDriver");
         ds.setUrl("jdbc:hsqldb:mem:sample");
@@ -27,14 +27,14 @@ public class JndiMain {
         ds.setPassword("");
         datainitialize(ds);
 
-        // Springが提供するJNDI実装(テスト用)を使用し、ネーミングコンテキストを生成
+        // Spring이 제공하는 JNDI구현(테스트 용)을 사용해서, 네이밍컨테키스를 생성
         SimpleNamingContextBuilder builder = new SimpleNamingContextBuilder();
         builder.bind("jdbc/MyDataSource", ds);
         builder.activate();
         
-        // Bean定義ファイルを使用し、JNDI経由でデータソースを取得
+        // Bean정의 파일을 사용해서, JNDI경우로 테이터 소스 취득
         //ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-jndi.xml");
-        // JavaConfigを使用し、JNDI経由でデータソースを取得
+        // JavaConfig를 사용해서, JNDI경우로 데이터 소스 취득
         ApplicationContext ctx = new AnnotationConfigApplicationContext(TemplateConfig.class, JndiConfig.class);
         
         JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);

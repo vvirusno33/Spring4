@@ -36,30 +36,30 @@ public class ExecuteSqlMain {
 
     public static void main(String[] args) {
     	
-    	// Springのコンテナを生成        
-    	//XMLでBean定義した場合
+    	// Spring 컨터이너 생성        
+    	//XML로 Bean을 정의한 경우
     	ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-db.xml");
 
-    	//JavaConfigでBean定義した場合
+    	//JavaConfig로 Bean을 정의한 경우
     	//ApplicationContext ctx = new AnnotationConfigApplicationContext(
         //        TemplateConfig.class, DataSourceConfig.class);
         
-        // JdbcTemplate と NamedParameterJdbcTemplateのオブジェクトを取得
+        // JdbcTemplate 와 NamedParameterJdbcTemplate 오브젝트를 취득
         JdbcTemplate jdbcTemplate = ctx.getBean(JdbcTemplate.class);
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = ctx.getBean(NamedParameterJdbcTemplate.class);
 
-        // SELECT 文　～ドメインへ変換しない場合
-        // queryForInt メソッド
+        // SELECT 문 ~ 도메인으로 변환안하는 경우
+        // queryForInt 메서드
         int count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM PET", Integer.class);
         System.out.println(count);
 
         
-        String ownerName = "東京太郎";
+        String ownerName = "홍길동";
         count = jdbcTemplate.queryForObject(
                 "SELECT COUNT(*) FROM PET WHERE OWNER_NAME=?", Integer.class, ownerName);
         System.out.println(count);
         
-        // queryForObject メソッド
+        // queryForObject 메서드
         int id = 1;
         String petName = jdbcTemplate.queryForObject(
                 "SELECT PET_NAME FROM PET WHERE PET_ID=?", String.class, id);
@@ -70,13 +70,13 @@ public class ExecuteSqlMain {
         System.out.println(birthDate);
         
         
-        // queryForMap メソッド
+        // queryForMap 메서드
         Map<String, Object> map = jdbcTemplate.queryForMap(
                 "SELECT * FROM PET WHERE PET_ID=?", id);
         System.out.println(map.get("PET_NAME"));
         System.out.println(map.get("OWNER_NAME"));
         
-        // queryForList メソッド
+        // queryForList 메서드
         List<Map<String, Object>> mapList = jdbcTemplate.queryForList(
                 " SELECT * FROM PET WHERE OWNER_NAME=?", ownerName);
         System.out.println(mapList.get(0).get("PET_NAME"));
@@ -89,9 +89,9 @@ public class ExecuteSqlMain {
         System.out.println(priceList.get(0));
         
         
-        // SELECT 文　～ドメインへ変換する場合
-        // queryForObject メソッド
-        // RowMapperを匿名クラスにする場合
+        // SELECT 문 ~ 도메인으로 변환하는 경우
+        // queryForObject 메서드
+        // RowMapper을 익명클라스로하는 경우
         Pet pet = jdbcTemplate.queryForObject(
                 "SELECT * FROM PET WHERE PET_ID=?"
                 , new RowMapper<Pet>() {
@@ -108,7 +108,7 @@ public class ExecuteSqlMain {
         System.out.println(pet.getPetName());
         System.out.println(pet.getOwnerName());
         
-        // RowMapperを匿名クラスにしない場合
+        // RowMapper을 익명클래스로 하지 않는 경우
         class MyRowMapper implements RowMapper<Pet> {
             public Pet mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Pet p = new Pet();
@@ -127,7 +127,7 @@ public class ExecuteSqlMain {
         System.out.println(pet.getPetName());
         System.out.println(pet.getOwnerName());
         
-        // query メソッド
+        // query 메서드
         List<Pet> petList = jdbcTemplate.query(
                 " SELECT * FROM PET WHERE OWNER_NAME=?"
                 , new RowMapper<Pet>() {
@@ -144,7 +144,7 @@ public class ExecuteSqlMain {
         System.out.println(petList.get(0).getPetName());
         System.out.println(petList.get(0).getOwnerName());
 
-        // BeanPropertyRowMapperを使用してドメインへの変更を自動化
+        // BeanPropertyRowMapper을 사용해서 도메인으로 변환을 자동화
         pet = jdbcTemplate.queryForObject(
                 " SELECT * FROM PET WHERE PET_ID=?"
                 , new BeanPropertyRowMapper<Pet>(Pet.class)
@@ -152,8 +152,8 @@ public class ExecuteSqlMain {
         System.out.println(pet.getPetName());
         System.out.println(pet.getOwnerName());
 
-        // ResultSetExtractorを使用したドメインの変換
-        // 親のドメインが１つの場合
+        // ResultSetExtractor을 사용한 도메인 변환
+        // 부모 도메인가 하나인 경우
         Owner owner = jdbcTemplate.query(
                 " SELECT * FROM OWNER O INNER JOIN PET P ON O.OWNER_NAME=P.OWNER_NAME WHERE O.OWNER_NAME=?"
                 , new ResultSetExtractor<Owner>() {
@@ -179,7 +179,7 @@ public class ExecuteSqlMain {
         System.out.println(owner.getPetList().get(0).getPetName());
         System.out.println(owner.getPetList().get(0).getOwnerName());
         
-        // 親のドメインが複数の場合
+        // 부모 도메인가 복수인 경우
         List<Owner> ownerList = jdbcTemplate.query(
                 " SELECT * FROM OWNER O INNER JOIN PET P ON O.OWNER_NAME=P.OWNER_NAME ORDER BY OWNER_NAME"
                 , new ResultSetExtractor<List<Owner>>() {
@@ -211,11 +211,11 @@ public class ExecuteSqlMain {
         System.out.println(ownerList.get(0).getPetList().get(0).getOwnerName());
         
         
-        // INSERT/UPDATE/DELETE 文
+        // INSERT/UPDATE/DELETE 문
         pet = new Pet();
         pet.setPetId(99);
-        pet.setPetName("タマ");
-        pet.setOwnerName("東京太郎");
+        pet.setPetName("나비");
+        pet.setOwnerName("홍길동");
         pet.setPrice(10000);
         pet.setBirthDate(new Date());        
         jdbcTemplate.update(
@@ -228,8 +228,8 @@ public class ExecuteSqlMain {
         
         jdbcTemplate.update("DELETE FROM PET WHERE PET_ID=?", pet.getPetId());
 
-        // NamedParameterJdbcTemplateを使用
-        // メソッドチェーンで記述する場合
+        // NamedParameterJdbcTemplate를 사용
+        // 메서드 체인에 기술하는 경우
         namedParameterJdbcTemplate.update(
                 " INSERT INTO PET (PET_ID, PET_NAME, OWNER_NAME, PRICE, BIRTH_DATE)" +
                     " VALUES (:PET_ID, :PET_NAME, :OWNER_NAME, :PRICE, :BIRTH_DATE)"
@@ -243,7 +243,7 @@ public class ExecuteSqlMain {
         
         jdbcTemplate.update("DELETE FROM PET WHERE PET_ID=?", pet.getPetId());
         
-        // メソッドチェーンで記述しない場合
+        // 메서드 체인에 기술하지 않는 경우
         MapSqlParameterSource map2 = new MapSqlParameterSource();
         map2.addValue("PET_ID", pet.getPetId());
         map2.addValue("PET_NAME", pet.getPetName());
@@ -258,7 +258,7 @@ public class ExecuteSqlMain {
         
         jdbcTemplate.update("DELETE FROM PET WHERE PET_ID=?", pet.getPetId());
 
-        // BeanPropertySqlParameterSourceを使用し、ドメインからパラメータへの変換を自動化
+        // BeanPropertySqlParameterSource를 사용해서 도메인에서 파라메터변화을 자동화
         BeanPropertySqlParameterSource beanProps = new BeanPropertySqlParameterSource(pet);
         namedParameterJdbcTemplate.update(
             " INSERT INTO PET (PET_ID, PET_NAME, OWNER_NAME, PRICE, BIRTH_DATE)" +
@@ -268,8 +268,8 @@ public class ExecuteSqlMain {
         
         jdbcTemplate.update("DELETE FROM PET WHERE PET_ID=?", pet.getPetId());
         
-        // バッチアップデート、プロシージャコール
-        // batchUpdate メソッドを使用したバッチアップデート
+        // 배치 업데이트, 프로시져 콜
+        // batchUpdate 메서드를 사용한 배치 업데이트
         final ArrayList<Pet> pList = new ArrayList<Pet>();
         pet = new Pet();
         pet.setPetId(1);
@@ -285,7 +285,7 @@ public class ExecuteSqlMain {
         
         pList.add(pet);
                 
-        //IN句
+        //IN구
         List<Integer> ids = new ArrayList<Integer>();
         ids.add(1);
         ids.add(2);
@@ -308,13 +308,13 @@ public class ExecuteSqlMain {
             }
         );
         
-        System.out.println("IN句");
+        System.out.println("IN구");
         for (Pet p : petList) {
             System.out.println(p.getPetId());
         }
         
         
-        //JdbcTemplateのbatchUpdate
+        //JdbcTemplate의 batchUpdate
         int[] num = jdbcTemplate.batchUpdate("UPDATE PET SET OWNER_NAME=? WHERE PET_ID=?", new BatchPreparedStatementSetter() {            
             @Override
             public void setValues(PreparedStatement ps, int i) throws SQLException {
@@ -333,7 +333,7 @@ public class ExecuteSqlMain {
                 "UPDATE PET SET OWNER_NAME=:ownerName WHERE PET_ID=:petId", batch);        
         
         
-        // SimpleJdbcCallを使用したプロシージャコール
+        // SimpleJdbcCall을 사용한 프로시져 콜
         SimpleJdbcCall call = new SimpleJdbcCall(jdbcTemplate.getDataSource())
         .withProcedureName("CALC_PET_PRICE")
         .withoutProcedureColumnMetaDataAccess()
