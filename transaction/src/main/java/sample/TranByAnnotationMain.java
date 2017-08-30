@@ -14,8 +14,8 @@ public class TranByAnnotationMain {
         PetService petService = ctx.getBean(PetService.class);
         Pet pet = new Pet();
         pet.setPetId(1);
-        pet.setPetName("ポチ");
-        pet.setOwnerName("大阪次郎");
+        pet.setPetName("나비");
+        pet.setOwnerName("홍길동");
         pet.setPrice(10000);
         pet.setBirthDate(new Date());
         
