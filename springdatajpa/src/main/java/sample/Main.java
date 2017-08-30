@@ -18,38 +18,38 @@ public class Main {
 
     public static void main(String[] args) {
     	
-    	//Springのコンテナを生成        
-    	//JavaConfigでBean定義した場合
+    	//Spring 컨테이너 생성        
+    	//JavaConfig로 Bean을 정의한 경우
 //        ApplicationContext ctx = new AnnotationConfigApplicationContext(
 //        		DataSourceConfig.class, AppConfig.class, JpaConfig.class);
 
-    	// Springのコンテナを生成        
-    	//XMLでBean定義した場合
+    	// Spring 컨테이너 생성        
+    	//XML로 Bean을 정의한 경우
         ApplicationContext ctx = new ClassPathXmlApplicationContext("sample/config/spring-jpa.xml");
                         
         PetDao dao = ctx.getBean(PetDao.class);
 
-        //Spring Data JPAが自動生成したメソッドを呼び出します
+        //Spring Data JPA가 자동생성한 메서드를 호출함
         Pet pet = dao.findOne(1);
         System.out.println(pet.getPetName());
         
-        //命名規則に沿ったメソッドを呼び出します
-        List<Pet> list = dao.findByPetNameAndPriceLessThanEqual("ポチ", 5000);
+        //명명 규칙에 따른 메서드를 호출함
+        List<Pet> list = dao.findByPetNameAndPriceLessThanEqual("발바리", 5000);
         System.out.println(list.size());
 
-        //JPAQLを指定したメソッドを呼び出します
-        list = dao.findByOwnerName("東京太郎");
+        //JPAQL를 지정한 메서드를 호출함
+        list = dao.findByOwnerName("홍길동");
         System.out.println(list.size());
 
-        //トランザクションを開始します
+        //트랜잭션을 개시
         PlatformTransactionManager t = ctx.getBean(PlatformTransactionManager.class);
         TransactionStatus s = t.getTransaction(null);
 
-        //JPAQLを指定したメソッド(更新系)を呼び出します
-        int count = dao.updatePetPrice(10000000, "ポチ5");
+        //JPAQL을 지정한 메서드(갱신)을 호출함
+        int count = dao.updatePetPrice(10000000, "발바리5");
         System.out.println("count="+count);
 
-        //トランザクションをコミットします
+        //트랜잭션을 커밋
         t.commit(s);
 
         list = dao.findAll();
@@ -57,7 +57,7 @@ public class Main {
             System.out.println(p.getPrice());
         }
 
-        //手動で実装を行ったメソッドを呼び出します
+        //수동으로 구현한 메서드를 호출함
         dao.foo();
 
         

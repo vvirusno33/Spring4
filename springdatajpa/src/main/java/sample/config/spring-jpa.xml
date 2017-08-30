@@ -15,7 +15,7 @@
     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
     ">
   
-  <!-- EntityManagerFactory(EntityManagerを生成するファクトリ)の設定 -->    
+  <!-- EntityManagerFactory(EntityManager을 생성하는 팩토리)의 설정 -->    
   <bean id="entityManagerFactory"
     class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
     <property name="dataSource" ref="dataSource" />
@@ -32,11 +32,11 @@
   
   <bean id="petDaoImpl" class="sample.springdatajpa.dataaccess.PetDaoImpl"/>
 
-  <!-- JPA Repositoryの設定 -->
+  <!-- JPA Repository 설정 -->
   <jpa:repositories base-package="sample.springdatajpa.business.service" />
 
   
-  <!-- TransactionManagerの設定 -->
+  <!-- TransactionManager 설정 -->
   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory" />
   </bean>
