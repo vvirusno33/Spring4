@@ -1,4 +1,4 @@
-insert into PET values(1, 발라리', 1, 5000, '2015-01-01');
+insert into PET values(1, '발라리', 1, 5000, '2015-01-01');
 insert into PET values(2, '나비', 2, 5000, '2015-01-01');
 insert into PET values(3, '나비', 1, 15000, '2015-01-01');
 insert into PET values(10, '나비3', 1, 15000, '2015-01-01');
