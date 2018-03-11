@@ -15,7 +15,7 @@ public class ProductSampleRun {
 
     @SuppressWarnings("resource")
 	public void execute() {
-    	// BeanFactory는ApplicationContext에서 변경해도 괜찮습니다
+    	// BeanFactory는ApplicationContext에서 변경해도 괜찮습니다  
         BeanFactory ctx = new ClassPathXmlApplicationContext(
                 "/sample/config/applicationContext.xml");
         ProductService productService = ctx.getBean(ProductService.class);
